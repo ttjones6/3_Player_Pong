@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include <cmath>
+using namespace std;
 
 // Reset the ball to the middle
 void ResetBall(Vector2 &ball, Vector2 &ballSpeed, int round) {
@@ -32,7 +33,7 @@ void SpeedUpBall(Vector2 &ballSpeed) {
     ballSpeed.y *= speedIncrease;
 
     // Find the current ball speed
-    float currentSpeed = std::sqrt(
+    float currentSpeed = sqrt(
         ballSpeed.x * ballSpeed.x +
         ballSpeed.y * ballSpeed.y
     );
@@ -174,7 +175,7 @@ int main() {
             if (ball.y + ballRadius >= screenHeight) { // The radius of the ball plus the x or y position of the ball is used as opposed to just the x or y position to prevent the ball from getting stuck in a collision loop with the bounds of the screen
 
                 ball.y = screenHeight - ballRadius;
-                ballSpeed.y = -std::fabs(ballSpeed.y); // The fabs() function returns the absolute value of a floating point number
+                ballSpeed.y = -fabs(ballSpeed.y); // The fabs() function returns the absolute value of a floating point number
             }
 
             // Collision with Player 1
@@ -182,7 +183,7 @@ int main() {
 
                 ball.x = player1.x + player1.width + ballRadius; // Sets x position of ball to the edge of player rectangle + ball radius to prevent infinite collision
 
-                ballSpeed.x = std::fabs(ballSpeed.x);
+                ballSpeed.x = fabs(ballSpeed.x);
 
                 // Change the ball's angle based on where it hits
                 float hitPosition =
@@ -201,7 +202,7 @@ int main() {
 
                 ball.x = player2.x - ballRadius;
 
-                ballSpeed.x = -std::fabs(ballSpeed.x);
+                ballSpeed.x = -fabs(ballSpeed.x);
 
                 float hitPosition =
                     ball.y - (player2.y + player2.height / 2);
@@ -219,7 +220,7 @@ int main() {
 
                 ball.y = player3.y + player3.height + ballRadius;
 
-                ballSpeed.y = std::fabs(ballSpeed.y);
+                ballSpeed.y = fabs(ballSpeed.y);
 
                 float hitPosition =
                     ball.x - (player3.x + player3.width / 2);
